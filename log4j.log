@@ -1,0 +1,25 @@
+09:10:02,751  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+09:10:02,754  INFO Util:38 - sgbd => postgresql
+09:10:02,754  INFO Util:39 - banco => sentimentosExpress
+09:10:02,756  INFO Util:40 - ip => localhost
+09:10:02,756  INFO Util:45 - configurando postgresql
+09:10:02,788 DEBUG logging:38 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+09:10:02,906  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+09:10:02,960  INFO Version:44 - HHH000412: Hibernate ORM core version 6.3.1.Final
+09:10:03,004 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+09:10:03,005  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+09:10:03,273  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+09:10:03,278  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+09:10:03,278  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/sentimentosExpress]
+09:10:03,279  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+09:10:03,279  INFO pooling:170 - HHH10001003: Autocommit mode: false
+09:10:03,282  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+09:10:03,535  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+09:10:04,614  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:10:04,641  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@26d5a317] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+09:10:05,049 DEBUG SQL:135 - select a1_0.id,a1_0.carro_placa,a1_0.cliente_cpf,a1_0.datafim,a1_0.datainicio,a1_0.diaria,a1_0.finalizado from Aluguel a1_0 join Carro c1_0 on c1_0.placa=a1_0.carro_placa where c1_0.modelo=?
+09:10:05,050 TRACE bind:24 - binding parameter (1:VARCHAR) <- [palio]
+09:10:05,107 DEBUG SQL:135 - select a1_0.id,a1_0.carro_placa,a1_0.cliente_cpf,a1_0.datafim,a1_0.datainicio,a1_0.diaria,a1_0.finalizado from Aluguel a1_0 where a1_0.finalizado=true
+09:10:05,168 DEBUG SQL:135 - select c1_0.placa,c1_0.alugado,a1_0.carro_placa,a1_0.id,a1_0.cliente_cpf,a1_0.datafim,a1_0.datainicio,a1_0.diaria,a1_0.finalizado,c1_0.modelo from Carro c1_0 left join Aluguel a1_0 on c1_0.placa=a1_0.carro_placa where (select count(1) from Aluguel a2_0 where c1_0.placa=a2_0.carro_placa)=?
+09:10:05,168 TRACE bind:24 - binding parameter (1:INTEGER) <- [2]
+09:10:05,171  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/sentimentosExpress]
