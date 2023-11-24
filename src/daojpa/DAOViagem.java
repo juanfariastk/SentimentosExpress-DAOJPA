@@ -1,6 +1,5 @@
 package daojpa;
 
-import jakarta.persistence.EntityManager;
 import model.Viagem;
 
 import java.util.List;

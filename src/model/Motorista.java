@@ -13,10 +13,13 @@ public class Motorista {
     @OneToMany(mappedBy = "motorista", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<Viagem> viagens = new ArrayList<>();
 
+    public Motorista() {}
+    
     public Motorista(String cnh, String nome) {
         this.cnh = cnh;
         this.nome = nome;
     }
+    
 
     public String getCnh() {
         return cnh;

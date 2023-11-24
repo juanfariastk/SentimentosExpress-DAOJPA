@@ -1,25 +1,419 @@
-09:10:02,751  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
-09:10:02,754  INFO Util:38 - sgbd => postgresql
-09:10:02,754  INFO Util:39 - banco => sentimentosExpress
-09:10:02,756  INFO Util:40 - ip => localhost
-09:10:02,756  INFO Util:45 - configurando postgresql
-09:10:02,788 DEBUG logging:38 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
-09:10:02,906  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
-09:10:02,960  INFO Version:44 - HHH000412: Hibernate ORM core version 6.3.1.Final
-09:10:03,004 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
-09:10:03,005  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
-09:10:03,273  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
-09:10:03,278  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
-09:10:03,278  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/sentimentosExpress]
-09:10:03,279  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
-09:10:03,279  INFO pooling:170 - HHH10001003: Autocommit mode: false
-09:10:03,282  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
-09:10:03,535  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-09:10:04,614  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-09:10:04,641  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@26d5a317] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-09:10:05,049 DEBUG SQL:135 - select a1_0.id,a1_0.carro_placa,a1_0.cliente_cpf,a1_0.datafim,a1_0.datainicio,a1_0.diaria,a1_0.finalizado from Aluguel a1_0 join Carro c1_0 on c1_0.placa=a1_0.carro_placa where c1_0.modelo=?
-09:10:05,050 TRACE bind:24 - binding parameter (1:VARCHAR) <- [palio]
-09:10:05,107 DEBUG SQL:135 - select a1_0.id,a1_0.carro_placa,a1_0.cliente_cpf,a1_0.datafim,a1_0.datainicio,a1_0.diaria,a1_0.finalizado from Aluguel a1_0 where a1_0.finalizado=true
-09:10:05,168 DEBUG SQL:135 - select c1_0.placa,c1_0.alugado,a1_0.carro_placa,a1_0.id,a1_0.cliente_cpf,a1_0.datafim,a1_0.datainicio,a1_0.diaria,a1_0.finalizado,c1_0.modelo from Carro c1_0 left join Aluguel a1_0 on c1_0.placa=a1_0.carro_placa where (select count(1) from Aluguel a2_0 where c1_0.placa=a2_0.carro_placa)=?
-09:10:05,168 TRACE bind:24 - binding parameter (1:INTEGER) <- [2]
-09:10:05,171  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/sentimentosExpress]
+11:43:54,188  INFO Util:31 - Util.conectar - lendo arquivo util.properties: 
+11:43:54,191  INFO Util:38 - sgbd => postgresql
+11:43:54,191  INFO Util:39 - banco => sentimentosExpress
+11:43:54,193  INFO Util:40 - ip => localhost
+11:43:54,193  INFO Util:45 - configurando postgresql
+11:43:54,224 DEBUG logging:38 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+11:43:54,343  INFO LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: hibernate-postgresql]
+11:43:54,397  INFO Version:44 - HHH000412: Hibernate ORM core version 6.3.1.Final
+11:43:54,433 DEBUG RegionFactoryInitiator:122 - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+11:43:54,434  INFO RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+11:43:54,663  WARN pooling:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+11:43:54,666  INFO pooling:135 - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+11:43:54,666  INFO pooling:157 - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://localhost:5432/sentimentosExpress]
+11:43:54,666  INFO pooling:166 - HHH10001001: Connection properties: {password=****, user=postgres}
+11:43:54,667  INFO pooling:170 - HHH10001003: Autocommit mode: false
+11:43:54,670  INFO pooling:366 - HHH10001115: Connection pool size: 20 (min=1)
+11:43:54,919  WARN deprecation:152 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+11:43:55,965  INFO JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:43:55,989  INFO access:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@72fbf94d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+11:43:56,024 DEBUG SQL:135 - create table Motorista (cnh varchar(255) not null, nome varchar(255), primary key (cnh))
+11:43:56,038 DEBUG SQL:135 - create table Veiculo (placa varchar(255) not null, capacidade integer not null, primary key (placa))
+11:43:56,041 DEBUG SQL:135 - create table Viagem (id serial not null, data varchar(255), destino varchar(255), quantidade integer not null, motorista_cnh varchar(255), veiculo_placa varchar(255), primary key (id))
+11:43:56,048 DEBUG SQL:135 - alter table if exists Viagem add constraint FKryxxxv5jfy940y0cbmwfxbb1c foreign key (motorista_cnh) references Motorista
+11:43:56,053 DEBUG SQL:135 - alter table if exists Viagem add constraint FKrq2lgts7p57pvkgcrxkb3b4q7 foreign key (veiculo_placa) references Veiculo
+11:43:56,129 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome from Motorista m1_0 where m1_0.cnh=?
+11:43:56,130 TRACE bind:24 - binding parameter (1:VARCHAR) <- [68418818452]
+11:43:56,157 DEBUG SQL:135 - insert into Motorista (nome,cnh) values (?,?)
+11:43:56,159 TRACE bind:24 - binding parameter (1:VARCHAR) <- [Carlinho do Financeiro]
+11:43:56,159 TRACE bind:24 - binding parameter (2:VARCHAR) <- [68418818452]
+11:43:56,169 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome from Motorista m1_0 where m1_0.cnh=?
+11:43:56,170 TRACE bind:24 - binding parameter (1:VARCHAR) <- [24030964862]
+11:43:56,171 DEBUG SQL:135 - insert into Motorista (nome,cnh) values (?,?)
+11:43:56,171 TRACE bind:24 - binding parameter (1:VARCHAR) <- [Leozinho do Borel]
+11:43:56,171 TRACE bind:24 - binding parameter (2:VARCHAR) <- [24030964862]
+11:43:56,173 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome from Motorista m1_0 where m1_0.cnh=?
+11:43:56,173 TRACE bind:24 - binding parameter (1:VARCHAR) <- [95752634310]
+11:43:56,174 DEBUG SQL:135 - insert into Motorista (nome,cnh) values (?,?)
+11:43:56,175 TRACE bind:24 - binding parameter (1:VARCHAR) <- [Zezão Pé Grande]
+11:43:56,175 TRACE bind:24 - binding parameter (2:VARCHAR) <- [95752634310]
+11:43:56,176 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome from Motorista m1_0 where m1_0.cnh=?
+11:43:56,176 TRACE bind:24 - binding parameter (1:VARCHAR) <- [51704264906]
+11:43:56,177 DEBUG SQL:135 - insert into Motorista (nome,cnh) values (?,?)
+11:43:56,177 TRACE bind:24 - binding parameter (1:VARCHAR) <- [Juquinha da Esquina]
+11:43:56,178 TRACE bind:24 - binding parameter (2:VARCHAR) <- [51704264906]
+11:43:56,179 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade from Veiculo v1_0 where v1_0.placa=?
+11:43:56,179 TRACE bind:24 - binding parameter (1:VARCHAR) <- [KBU-0214]
+11:43:56,181 DEBUG SQL:135 - insert into Veiculo (capacidade,placa) values (?,?)
+11:43:56,181 TRACE bind:24 - binding parameter (1:INTEGER) <- [4]
+11:43:56,182 TRACE bind:24 - binding parameter (2:VARCHAR) <- [KBU-0214]
+11:43:56,184 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade from Veiculo v1_0 where v1_0.placa=?
+11:43:56,184 TRACE bind:24 - binding parameter (1:VARCHAR) <- [NEM-9988]
+11:43:56,185 DEBUG SQL:135 - insert into Veiculo (capacidade,placa) values (?,?)
+11:43:56,186 TRACE bind:24 - binding parameter (1:INTEGER) <- [7]
+11:43:56,186 TRACE bind:24 - binding parameter (2:VARCHAR) <- [NEM-9988]
+11:43:56,187 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade from Veiculo v1_0 where v1_0.placa=?
+11:43:56,187 TRACE bind:24 - binding parameter (1:VARCHAR) <- [JYQ-1219]
+11:43:56,188 DEBUG SQL:135 - insert into Veiculo (capacidade,placa) values (?,?)
+11:43:56,188 TRACE bind:24 - binding parameter (1:INTEGER) <- [6]
+11:43:56,188 TRACE bind:24 - binding parameter (2:VARCHAR) <- [JYQ-1219]
+11:43:56,190 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade from Veiculo v1_0 where v1_0.placa=?
+11:43:56,190 TRACE bind:24 - binding parameter (1:VARCHAR) <- [HYU-7848]
+11:43:56,191 DEBUG SQL:135 - insert into Veiculo (capacidade,placa) values (?,?)
+11:43:56,191 TRACE bind:24 - binding parameter (1:INTEGER) <- [7]
+11:43:56,191 TRACE bind:24 - binding parameter (2:VARCHAR) <- [HYU-7848]
+11:43:56,203 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,204 TRACE bind:24 - binding parameter (1:VARCHAR) <- [68418818452]
+11:43:56,221 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,221 TRACE bind:24 - binding parameter (1:VARCHAR) <- [KBU-0214]
+11:43:56,225 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,225 TRACE bind:24 - binding parameter (1:VARCHAR) <- [22/10/2022]
+11:43:56,225 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Recife]
+11:43:56,226 TRACE bind:24 - binding parameter (3:VARCHAR) <- [68418818452]
+11:43:56,226 TRACE bind:24 - binding parameter (4:INTEGER) <- [4]
+11:43:56,226 TRACE bind:24 - binding parameter (5:VARCHAR) <- [KBU-0214]
+11:43:56,242 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,242 TRACE bind:24 - binding parameter (1:VARCHAR) <- [24030964862]
+11:43:56,244 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,244 TRACE bind:24 - binding parameter (1:VARCHAR) <- [NEM-9988]
+11:43:56,245 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,246 TRACE bind:24 - binding parameter (1:VARCHAR) <- [10/12/2022]
+11:43:56,246 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Guarapari]
+11:43:56,246 TRACE bind:24 - binding parameter (3:VARCHAR) <- [24030964862]
+11:43:56,246 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,246 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,249 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,249 TRACE bind:24 - binding parameter (1:VARCHAR) <- [95752634310]
+11:43:56,251 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,251 TRACE bind:24 - binding parameter (1:VARCHAR) <- [JYQ-1219]
+11:43:56,252 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,253 TRACE bind:24 - binding parameter (1:VARCHAR) <- [01/09/2022]
+11:43:56,253 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Bariloche]
+11:43:56,253 TRACE bind:24 - binding parameter (3:VARCHAR) <- [95752634310]
+11:43:56,253 TRACE bind:24 - binding parameter (4:INTEGER) <- [7]
+11:43:56,253 TRACE bind:24 - binding parameter (5:VARCHAR) <- [JYQ-1219]
+11:43:56,256 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,256 TRACE bind:24 - binding parameter (1:VARCHAR) <- [51704264906]
+11:43:56,258 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,258 TRACE bind:24 - binding parameter (1:VARCHAR) <- [HYU-7848]
+11:43:56,259 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,260 TRACE bind:24 - binding parameter (1:VARCHAR) <- [01/09/2022]
+11:43:56,260 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Bariloche]
+11:43:56,260 TRACE bind:24 - binding parameter (3:VARCHAR) <- [51704264906]
+11:43:56,260 TRACE bind:24 - binding parameter (4:INTEGER) <- [4]
+11:43:56,260 TRACE bind:24 - binding parameter (5:VARCHAR) <- [HYU-7848]
+11:43:56,263 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,263 TRACE bind:24 - binding parameter (1:VARCHAR) <- [95752634310]
+11:43:56,266 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,266 TRACE bind:24 - binding parameter (1:INTEGER) <- [3]
+11:43:56,267 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,267 TRACE bind:24 - binding parameter (1:VARCHAR) <- [JYQ-1219]
+11:43:56,269 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,269 TRACE bind:24 - binding parameter (1:VARCHAR) <- [01/09/2022]
+11:43:56,269 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Bariloche]
+11:43:56,269 TRACE bind:24 - binding parameter (3:VARCHAR) <- [95752634310]
+11:43:56,269 TRACE bind:24 - binding parameter (4:INTEGER) <- [7]
+11:43:56,269 TRACE bind:24 - binding parameter (5:VARCHAR) <- [JYQ-1219]
+11:43:56,270 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,271 TRACE bind:24 - binding parameter (1:VARCHAR) <- [NEM-9988]
+11:43:56,272 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,272 TRACE bind:24 - binding parameter (1:INTEGER) <- [2]
+11:43:56,273 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,273 TRACE bind:24 - binding parameter (1:VARCHAR) <- [24030964862]
+11:43:56,274 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,274 TRACE bind:24 - binding parameter (1:VARCHAR) <- [10/12/2022]
+11:43:56,274 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Guarapari]
+11:43:56,274 TRACE bind:24 - binding parameter (3:VARCHAR) <- [24030964862]
+11:43:56,274 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,275 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,275 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,276 TRACE bind:24 - binding parameter (1:VARCHAR) <- [11/01/2023]
+11:43:56,276 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Augusta]
+11:43:56,276 TRACE bind:24 - binding parameter (3:VARCHAR) <- [95752634310]
+11:43:56,276 TRACE bind:24 - binding parameter (4:INTEGER) <- [5]
+11:43:56,276 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,278 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,278 TRACE bind:24 - binding parameter (1:VARCHAR) <- [24030964862]
+11:43:56,279 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,280 TRACE bind:24 - binding parameter (1:INTEGER) <- [6]
+11:43:56,280 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,280 TRACE bind:24 - binding parameter (1:VARCHAR) <- [NEM-9988]
+11:43:56,281 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,281 TRACE bind:24 - binding parameter (1:INTEGER) <- [7]
+11:43:56,282 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,283 TRACE bind:24 - binding parameter (1:VARCHAR) <- [95752634310]
+11:43:56,284 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,284 TRACE bind:24 - binding parameter (1:INTEGER) <- [5]
+11:43:56,286 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,286 TRACE bind:24 - binding parameter (1:VARCHAR) <- [JYQ-1219]
+11:43:56,287 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,287 TRACE bind:24 - binding parameter (1:VARCHAR) <- [01/09/2022]
+11:43:56,287 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Bariloche]
+11:43:56,287 TRACE bind:24 - binding parameter (3:VARCHAR) <- [95752634310]
+11:43:56,287 TRACE bind:24 - binding parameter (4:INTEGER) <- [7]
+11:43:56,288 TRACE bind:24 - binding parameter (5:VARCHAR) <- [JYQ-1219]
+11:43:56,288 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,289 TRACE bind:24 - binding parameter (1:VARCHAR) <- [11/01/2023]
+11:43:56,289 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Augusta]
+11:43:56,289 TRACE bind:24 - binding parameter (3:VARCHAR) <- [95752634310]
+11:43:56,289 TRACE bind:24 - binding parameter (4:INTEGER) <- [5]
+11:43:56,289 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,290 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,291 TRACE bind:24 - binding parameter (1:VARCHAR) <- [10/12/2022]
+11:43:56,291 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Guarapari]
+11:43:56,291 TRACE bind:24 - binding parameter (3:VARCHAR) <- [24030964862]
+11:43:56,291 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,291 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,292 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,292 TRACE bind:24 - binding parameter (1:VARCHAR) <- [KBU-0214]
+11:43:56,293 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,293 TRACE bind:24 - binding parameter (1:INTEGER) <- [1]
+11:43:56,294 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,294 TRACE bind:24 - binding parameter (1:VARCHAR) <- [68418818452]
+11:43:56,295 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,296 TRACE bind:24 - binding parameter (1:VARCHAR) <- [22/10/2022]
+11:43:56,296 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Recife]
+11:43:56,296 TRACE bind:24 - binding parameter (3:VARCHAR) <- [68418818452]
+11:43:56,296 TRACE bind:24 - binding parameter (4:INTEGER) <- [4]
+11:43:56,296 TRACE bind:24 - binding parameter (5:VARCHAR) <- [KBU-0214]
+11:43:56,297 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,297 TRACE bind:24 - binding parameter (1:VARCHAR) <- [18/01/2023]
+11:43:56,297 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Feira de Santada]
+11:43:56,297 TRACE bind:24 - binding parameter (3:VARCHAR) <- [24030964862]
+11:43:56,297 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,297 TRACE bind:24 - binding parameter (5:VARCHAR) <- [KBU-0214]
+11:43:56,300 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,300 TRACE bind:24 - binding parameter (1:VARCHAR) <- [68418818452]
+11:43:56,302 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,302 TRACE bind:24 - binding parameter (1:INTEGER) <- [11]
+11:43:56,303 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,303 TRACE bind:24 - binding parameter (1:VARCHAR) <- [KBU-0214]
+11:43:56,305 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,305 TRACE bind:24 - binding parameter (1:INTEGER) <- [12]
+11:43:56,305 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,306 TRACE bind:24 - binding parameter (1:VARCHAR) <- [24030964862]
+11:43:56,307 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,307 TRACE bind:24 - binding parameter (1:INTEGER) <- [10]
+11:43:56,308 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,308 TRACE bind:24 - binding parameter (1:VARCHAR) <- [NEM-9988]
+11:43:56,309 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,310 TRACE bind:24 - binding parameter (1:INTEGER) <- [9]
+11:43:56,310 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,311 TRACE bind:24 - binding parameter (1:VARCHAR) <- [95752634310]
+11:43:56,312 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,312 TRACE bind:24 - binding parameter (1:INTEGER) <- [8]
+11:43:56,313 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,313 TRACE bind:24 - binding parameter (1:VARCHAR) <- [JYQ-1219]
+11:43:56,314 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,314 TRACE bind:24 - binding parameter (1:VARCHAR) <- [01/09/2022]
+11:43:56,314 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Bariloche]
+11:43:56,315 TRACE bind:24 - binding parameter (3:VARCHAR) <- [95752634310]
+11:43:56,315 TRACE bind:24 - binding parameter (4:INTEGER) <- [7]
+11:43:56,315 TRACE bind:24 - binding parameter (5:VARCHAR) <- [JYQ-1219]
+11:43:56,316 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,317 TRACE bind:24 - binding parameter (1:VARCHAR) <- [11/01/2023]
+11:43:56,317 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Augusta]
+11:43:56,317 TRACE bind:24 - binding parameter (3:VARCHAR) <- [95752634310]
+11:43:56,317 TRACE bind:24 - binding parameter (4:INTEGER) <- [5]
+11:43:56,318 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,318 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,319 TRACE bind:24 - binding parameter (1:VARCHAR) <- [10/12/2022]
+11:43:56,319 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Guarapari]
+11:43:56,319 TRACE bind:24 - binding parameter (3:VARCHAR) <- [24030964862]
+11:43:56,319 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,319 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,320 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,320 TRACE bind:24 - binding parameter (1:VARCHAR) <- [18/01/2023]
+11:43:56,320 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Feira de Santada]
+11:43:56,320 TRACE bind:24 - binding parameter (3:VARCHAR) <- [24030964862]
+11:43:56,320 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,320 TRACE bind:24 - binding parameter (5:VARCHAR) <- [KBU-0214]
+11:43:56,321 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,321 TRACE bind:24 - binding parameter (1:VARCHAR) <- [22/10/2022]
+11:43:56,321 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Recife]
+11:43:56,322 TRACE bind:24 - binding parameter (3:VARCHAR) <- [68418818452]
+11:43:56,322 TRACE bind:24 - binding parameter (4:INTEGER) <- [4]
+11:43:56,322 TRACE bind:24 - binding parameter (5:VARCHAR) <- [KBU-0214]
+11:43:56,322 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,323 TRACE bind:24 - binding parameter (1:VARCHAR) <- [HYU-7848]
+11:43:56,323 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,323 TRACE bind:24 - binding parameter (1:INTEGER) <- [4]
+11:43:56,324 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,324 TRACE bind:24 - binding parameter (1:VARCHAR) <- [51704264906]
+11:43:56,325 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,325 TRACE bind:24 - binding parameter (1:VARCHAR) <- [01/09/2022]
+11:43:56,325 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Bariloche]
+11:43:56,325 TRACE bind:24 - binding parameter (3:VARCHAR) <- [51704264906]
+11:43:56,325 TRACE bind:24 - binding parameter (4:INTEGER) <- [4]
+11:43:56,326 TRACE bind:24 - binding parameter (5:VARCHAR) <- [HYU-7848]
+11:43:56,326 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,326 TRACE bind:24 - binding parameter (1:VARCHAR) <- [18/01/2023]
+11:43:56,326 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Areia]
+11:43:56,327 TRACE bind:24 - binding parameter (3:VARCHAR) <- [68418818452]
+11:43:56,327 TRACE bind:24 - binding parameter (4:INTEGER) <- [5]
+11:43:56,327 TRACE bind:24 - binding parameter (5:VARCHAR) <- [HYU-7848]
+11:43:56,329 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,329 TRACE bind:24 - binding parameter (1:VARCHAR) <- [68418818452]
+11:43:56,330 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,330 TRACE bind:24 - binding parameter (1:INTEGER) <- [17]
+11:43:56,331 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,331 TRACE bind:24 - binding parameter (1:VARCHAR) <- [KBU-0214]
+11:43:56,332 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,332 TRACE bind:24 - binding parameter (1:INTEGER) <- [16]
+11:43:56,333 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,333 TRACE bind:24 - binding parameter (1:VARCHAR) <- [24030964862]
+11:43:56,334 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,334 TRACE bind:24 - binding parameter (1:INTEGER) <- [15]
+11:43:56,335 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,335 TRACE bind:24 - binding parameter (1:VARCHAR) <- [NEM-9988]
+11:43:56,336 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,336 TRACE bind:24 - binding parameter (1:INTEGER) <- [14]
+11:43:56,336 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,337 TRACE bind:24 - binding parameter (1:VARCHAR) <- [95752634310]
+11:43:56,338 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,338 TRACE bind:24 - binding parameter (1:INTEGER) <- [13]
+11:43:56,339 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,339 TRACE bind:24 - binding parameter (1:VARCHAR) <- [JYQ-1219]
+11:43:56,340 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,341 TRACE bind:24 - binding parameter (1:VARCHAR) <- [01/09/2022]
+11:43:56,341 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Bariloche]
+11:43:56,341 TRACE bind:24 - binding parameter (3:VARCHAR) <- [95752634310]
+11:43:56,341 TRACE bind:24 - binding parameter (4:INTEGER) <- [7]
+11:43:56,341 TRACE bind:24 - binding parameter (5:VARCHAR) <- [JYQ-1219]
+11:43:56,342 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,342 TRACE bind:24 - binding parameter (1:VARCHAR) <- [11/01/2023]
+11:43:56,342 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Augusta]
+11:43:56,343 TRACE bind:24 - binding parameter (3:VARCHAR) <- [95752634310]
+11:43:56,343 TRACE bind:24 - binding parameter (4:INTEGER) <- [5]
+11:43:56,343 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,344 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,344 TRACE bind:24 - binding parameter (1:VARCHAR) <- [04/02/2023]
+11:43:56,344 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Rio Branco]
+11:43:56,344 TRACE bind:24 - binding parameter (3:VARCHAR) <- [68418818452]
+11:43:56,344 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,344 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,345 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,345 TRACE bind:24 - binding parameter (1:VARCHAR) <- [10/12/2022]
+11:43:56,346 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Guarapari]
+11:43:56,346 TRACE bind:24 - binding parameter (3:VARCHAR) <- [24030964862]
+11:43:56,346 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,346 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,347 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,347 TRACE bind:24 - binding parameter (1:VARCHAR) <- [18/01/2023]
+11:43:56,347 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Feira de Santada]
+11:43:56,347 TRACE bind:24 - binding parameter (3:VARCHAR) <- [24030964862]
+11:43:56,347 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,347 TRACE bind:24 - binding parameter (5:VARCHAR) <- [KBU-0214]
+11:43:56,348 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,349 TRACE bind:24 - binding parameter (1:VARCHAR) <- [22/10/2022]
+11:43:56,349 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Recife]
+11:43:56,350 TRACE bind:24 - binding parameter (3:VARCHAR) <- [68418818452]
+11:43:56,350 TRACE bind:24 - binding parameter (4:INTEGER) <- [4]
+11:43:56,350 TRACE bind:24 - binding parameter (5:VARCHAR) <- [KBU-0214]
+11:43:56,352 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,352 TRACE bind:24 - binding parameter (1:INTEGER) <- [19]
+11:43:56,353 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,353 TRACE bind:24 - binding parameter (1:VARCHAR) <- [HYU-7848]
+11:43:56,355 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,356 TRACE bind:24 - binding parameter (1:INTEGER) <- [18]
+11:43:56,357 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,357 TRACE bind:24 - binding parameter (1:VARCHAR) <- [51704264906]
+11:43:56,359 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,359 TRACE bind:24 - binding parameter (1:VARCHAR) <- [01/09/2022]
+11:43:56,359 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Bariloche]
+11:43:56,359 TRACE bind:24 - binding parameter (3:VARCHAR) <- [51704264906]
+11:43:56,359 TRACE bind:24 - binding parameter (4:INTEGER) <- [4]
+11:43:56,359 TRACE bind:24 - binding parameter (5:VARCHAR) <- [HYU-7848]
+11:43:56,360 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,360 TRACE bind:24 - binding parameter (1:VARCHAR) <- [18/01/2023]
+11:43:56,361 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Areia]
+11:43:56,361 TRACE bind:24 - binding parameter (3:VARCHAR) <- [68418818452]
+11:43:56,361 TRACE bind:24 - binding parameter (4:INTEGER) <- [5]
+11:43:56,361 TRACE bind:24 - binding parameter (5:VARCHAR) <- [HYU-7848]
+11:43:56,367 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,367 TRACE bind:24 - binding parameter (1:VARCHAR) <- [51704264906]
+11:43:56,368 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,368 TRACE bind:24 - binding parameter (1:INTEGER) <- [26]
+11:43:56,369 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,369 TRACE bind:24 - binding parameter (1:VARCHAR) <- [HYU-7848]
+11:43:56,370 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,371 TRACE bind:24 - binding parameter (1:INTEGER) <- [27]
+11:43:56,371 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,372 TRACE bind:24 - binding parameter (1:VARCHAR) <- [68418818452]
+11:43:56,372 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,373 TRACE bind:24 - binding parameter (1:INTEGER) <- [25]
+11:43:56,374 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,374 TRACE bind:24 - binding parameter (1:VARCHAR) <- [KBU-0214]
+11:43:56,376 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,376 TRACE bind:24 - binding parameter (1:INTEGER) <- [24]
+11:43:56,377 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,377 TRACE bind:24 - binding parameter (1:VARCHAR) <- [24030964862]
+11:43:56,378 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,378 TRACE bind:24 - binding parameter (1:INTEGER) <- [23]
+11:43:56,379 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,379 TRACE bind:24 - binding parameter (1:VARCHAR) <- [NEM-9988]
+11:43:56,380 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,381 TRACE bind:24 - binding parameter (1:INTEGER) <- [21]
+11:43:56,382 DEBUG SQL:135 - select m1_0.cnh,m1_0.nome,v1_0.motorista_cnh,v1_0.id,v1_0.data,v1_0.destino,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Motorista m1_0 left join Viagem v1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where m1_0.cnh=?
+11:43:56,383 TRACE bind:24 - binding parameter (1:VARCHAR) <- [95752634310]
+11:43:56,385 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,385 TRACE bind:24 - binding parameter (1:INTEGER) <- [20]
+11:43:56,386 DEBUG SQL:135 - select v1_0.placa,v1_0.capacidade,v2_0.veiculo_placa,v2_0.id,v2_0.data,v2_0.destino,m1_0.cnh,m1_0.nome,v2_0.quantidade from Veiculo v1_0 left join Viagem v2_0 on v1_0.placa=v2_0.veiculo_placa left join Motorista m1_0 on m1_0.cnh=v2_0.motorista_cnh where v1_0.placa=?
+11:43:56,387 TRACE bind:24 - binding parameter (1:VARCHAR) <- [JYQ-1219]
+11:43:56,388 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,388 TRACE bind:24 - binding parameter (1:VARCHAR) <- [17/02/2023]
+11:43:56,388 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Santa Catarina]
+11:43:56,389 TRACE bind:24 - binding parameter (3:VARCHAR) <- [51704264906]
+11:43:56,389 TRACE bind:24 - binding parameter (4:INTEGER) <- [4]
+11:43:56,389 TRACE bind:24 - binding parameter (5:VARCHAR) <- [JYQ-1219]
+11:43:56,390 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,390 TRACE bind:24 - binding parameter (1:VARCHAR) <- [01/09/2022]
+11:43:56,391 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Bariloche]
+11:43:56,391 TRACE bind:24 - binding parameter (3:VARCHAR) <- [95752634310]
+11:43:56,391 TRACE bind:24 - binding parameter (4:INTEGER) <- [7]
+11:43:56,391 TRACE bind:24 - binding parameter (5:VARCHAR) <- [JYQ-1219]
+11:43:56,392 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,392 TRACE bind:24 - binding parameter (1:VARCHAR) <- [11/01/2023]
+11:43:56,392 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Augusta]
+11:43:56,392 TRACE bind:24 - binding parameter (3:VARCHAR) <- [95752634310]
+11:43:56,393 TRACE bind:24 - binding parameter (4:INTEGER) <- [5]
+11:43:56,393 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,394 DEBUG SQL:135 - select v1_0.id,v1_0.data,v1_0.destino,m1_0.cnh,m1_0.nome,v1_0.quantidade,v2_0.placa,v2_0.capacidade from Viagem v1_0 left join Motorista m1_0 on m1_0.cnh=v1_0.motorista_cnh left join Veiculo v2_0 on v2_0.placa=v1_0.veiculo_placa where v1_0.id=?
+11:43:56,394 TRACE bind:24 - binding parameter (1:INTEGER) <- [22]
+11:43:56,394 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,395 TRACE bind:24 - binding parameter (1:VARCHAR) <- [04/02/2023]
+11:43:56,395 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Rio Branco]
+11:43:56,395 TRACE bind:24 - binding parameter (3:VARCHAR) <- [68418818452]
+11:43:56,395 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,395 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,396 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,397 TRACE bind:24 - binding parameter (1:VARCHAR) <- [10/12/2022]
+11:43:56,397 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Guarapari]
+11:43:56,397 TRACE bind:24 - binding parameter (3:VARCHAR) <- [24030964862]
+11:43:56,398 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,398 TRACE bind:24 - binding parameter (5:VARCHAR) <- [NEM-9988]
+11:43:56,399 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,399 TRACE bind:24 - binding parameter (1:VARCHAR) <- [18/01/2023]
+11:43:56,400 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Feira de Santada]
+11:43:56,400 TRACE bind:24 - binding parameter (3:VARCHAR) <- [24030964862]
+11:43:56,400 TRACE bind:24 - binding parameter (4:INTEGER) <- [3]
+11:43:56,400 TRACE bind:24 - binding parameter (5:VARCHAR) <- [KBU-0214]
+11:43:56,401 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,401 TRACE bind:24 - binding parameter (1:VARCHAR) <- [22/10/2022]
+11:43:56,401 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Recife]
+11:43:56,401 TRACE bind:24 - binding parameter (3:VARCHAR) <- [68418818452]
+11:43:56,401 TRACE bind:24 - binding parameter (4:INTEGER) <- [4]
+11:43:56,401 TRACE bind:24 - binding parameter (5:VARCHAR) <- [KBU-0214]
+11:43:56,402 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,402 TRACE bind:24 - binding parameter (1:VARCHAR) <- [18/01/2023]
+11:43:56,402 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Areia]
+11:43:56,402 TRACE bind:24 - binding parameter (3:VARCHAR) <- [68418818452]
+11:43:56,402 TRACE bind:24 - binding parameter (4:INTEGER) <- [5]
+11:43:56,403 TRACE bind:24 - binding parameter (5:VARCHAR) <- [HYU-7848]
+11:43:56,403 DEBUG SQL:135 - insert into Viagem (data,destino,motorista_cnh,quantidade,veiculo_placa) values (?,?,?,?,?)
+11:43:56,403 TRACE bind:24 - binding parameter (1:VARCHAR) <- [01/09/2022]
+11:43:56,403 TRACE bind:24 - binding parameter (2:VARCHAR) <- [Bariloche]
+11:43:56,403 TRACE bind:24 - binding parameter (3:VARCHAR) <- [51704264906]
+11:43:56,404 TRACE bind:24 - binding parameter (4:INTEGER) <- [4]
+11:43:56,404 TRACE bind:24 - binding parameter (5:VARCHAR) <- [HYU-7848]
+11:43:56,407  INFO pooling:601 - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/sentimentosExpress]

@@ -20,6 +20,8 @@ public class Viagem {
 
     private int quantidade;
     
+    public Viagem() {}
+    
     public Viagem(String data, Veiculo veiculo, Motorista motorista, String destino, int quantidade) {
         this.data = data;
         this.veiculo = veiculo;

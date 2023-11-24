@@ -12,6 +12,8 @@ public class Veiculo {
 
     @OneToMany(mappedBy = "veiculo", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<Viagem> viagens = new ArrayList<>();
+    
+    public Veiculo() {}
 
     public Veiculo(String placa, int capacidade) {
         this.placa = placa;
