@@ -1,49 +1,48 @@
-/**********************************
- * IFPB - Curso Superior de Tec. em Sist. para Internet
- * POB - Persistencia de Objetos
- * Prof. Fausto Ayres
- *
- */
-
 package appconsole;
 
-import model.Aluguel;
-import model.Carro;
 import regras_negocio.Fachada;
+import model.Viagem;
+import model.Veiculo;
+import model.Motorista;
 
 public class Consultar {
 
-	public Consultar() {
-		try {
-			Fachada.inicializar();
+    public Consultar() {
+        try {
+            Fachada.inicializar();
 
-			System.out.println("consultas... \n");
-			System.out.println("\nalugueis de carro palio");
-			for(Aluguel a : Fachada.alugueisModelo("palio"))
-				System.out.println(a);
+            System.out.println("Consultas...\n");
 
+            // Consultar viagens da data de 18/01/2023
+            System.out.println("Viagens da data de 18/01/2023:");
+            for (Viagem viagem : Fachada.listarViagensPorData("18/01/2023")) {
+                System.out.println(viagem);
+            }
 
-			System.out.println("\nalugueis finalizados");
-			for(Aluguel a : Fachada.alugueisFinalizados())
-				System.out.println(a);
+            // Consultar viagens do veículo de placa JYQ-1219
+            System.out.println("\nViagens do veículo JYQ-1219:");
+            Veiculo veiculo = Fachada.localizarVeiculoPorPlaca("JYQ-1219");
+            if (veiculo != null) {
+                for (Viagem viagem : veiculo.getViagens()) {
+                    System.out.println(viagem);
+                }
+            }
 
+            // Consultar motoristas com mais de 2 viagens
+            System.out.println("\nMotoristas com mais de 2 viagens:");
+            for (Motorista motorista : Fachada.motoristasComMaisDeDuasViagens()) {
+                System.out.println(motorista.getNome());
+                System.out.println(motorista);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
-			System.out.println("\ncarros que possuem 2 alugueis");
-			for(Carro c : Fachada.carrosNAlugueis(2))
-				System.out.println(c);
+        Fachada.finalizar();
+        System.out.println("\nFim do programa!");
+    }
 
-
-			//System.out.println("clientes que possuem 2 alugueis");
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-
-		Fachada.finalizar();
-		System.out.println("\nfim do programa !");
-	}
-
-	public static void main(String[] args) {
-		new Consultar();
-	}
+    public static void main(String[] args) {
+        new Consultar();
+    }
 }
-

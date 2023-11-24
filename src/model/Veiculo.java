@@ -49,5 +49,17 @@ public class Veiculo {
         viagens.remove(viagem);
         viagem.setVeiculo(null);
     }
+    
+    @Override
+	public String toString() {
+		String texto = "Veiculo [placa=" + placa + ", Capacidade = " + capacidade + "] Viagens = " ;
+		if (viagens.isEmpty())
+			texto += " ";
+		else 	
+			for(Viagem v: viagens) 
+				texto += v.getDestino() + " - " ; 
+		
+	    return texto;
+	}
 
 }

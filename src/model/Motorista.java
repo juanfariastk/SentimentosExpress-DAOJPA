@@ -52,7 +52,13 @@ public class Motorista {
     }
 
     @Override
-    public String toString() {
-        return "Motorista [cnh=" + cnh + ", nome=" + nome + "]";
-    }
+	public String toString() {
+		String texto = "Motorista [cnh=" + cnh + ", nome=" + nome + "] Viagens = ";
+			if (viagens.isEmpty())
+				texto += " ";
+			else 	
+				for(Viagem v: viagens) 
+					texto += v.getDestino() + " - " ; 
+		    return texto;
+	}
 }

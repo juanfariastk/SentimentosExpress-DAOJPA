@@ -67,12 +67,19 @@ public class Fachada {
     public static Viagem cadastrarViagem(String data, Veiculo veiculo, Motorista motorista, String destino, int quantidade) {
         try {
             DAO.begin();
+
+            veiculo = daoVeiculo.read(veiculo.getPlaca());
+            motorista = daoMotorista.read(motorista.getCnh());
+
             Viagem viagem = new Viagem(data, veiculo, motorista, destino, quantidade);
+
             motorista.adicionarViagem(viagem);
             veiculo.adicionarViagem(viagem);
+
+            daoViagem.create(viagem);
             daoMotorista.update(motorista);
             daoVeiculo.update(veiculo);
-            daoViagem.create(viagem);
+
             DAO.commit();
             return viagem;
         } catch (Exception e) {
@@ -80,7 +87,7 @@ public class Fachada {
             DAO.rollback();
             return null;
         }
-    }
+    } 
 
     public static List<Veiculo> listarVeiculos() {
         try {

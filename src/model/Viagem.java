@@ -77,5 +77,11 @@ public class Viagem {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+    
+    @Override
+	public String toString() {
+		return "Viagem [id=" + id + ", data=" + data + ", veiculo=" + veiculo + ", motorista=" + motorista
+				+ ", destino=" + destino + ", quantidade=" + quantidade + "]";
+	}
 
 }
