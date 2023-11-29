@@ -10,12 +10,12 @@ public class Viagem {
     private String data;
     private String destino;
 
-    @ManyToOne
-    @JoinColumn(name = "motorista_cnh")
+    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE},
+			fetch=FetchType.LAZY)
     private Motorista motorista;
 
-    @ManyToOne
-    @JoinColumn(name = "veiculo_placa")
+    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE},
+			fetch=FetchType.LAZY)
     private Veiculo veiculo;
 
     private int quantidade;
@@ -80,7 +80,7 @@ public class Viagem {
     
     @Override
 	public String toString() {
-		return "Viagem [id=" + id + ", data=" + data + ", veiculo=" + veiculo + ", motorista=" + motorista
+		return "Viagem [id=" + id + ", data=" + data + ", veiculo=" + veiculo.getPlaca() + ", motorista=" + motorista.getCnh()
 				+ ", destino=" + destino + ", quantidade=" + quantidade + "]";
 	}
 

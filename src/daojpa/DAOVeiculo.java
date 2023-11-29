@@ -12,10 +12,15 @@ public class DAOVeiculo extends DAO<Veiculo> {
         String placa = (String) chave;
         return manager.find(Veiculo.class, placa);
     }
+    
+    public List<Veiculo> readAll(){
+		TypedQuery<Veiculo> query = manager.createQuery("select v from Veiculo v LEFT JOIN FETCH v.viagens order by v.placa",Veiculo.class);
+		return  query.getResultList();
+	}
 
     public Veiculo veiculoPorMotorista(String nomeMotorista) {
         TypedQuery<Veiculo> query = manager.createQuery(
-                "SELECT v FROM Veiculo v JOIN v.viagens viagem WHERE viagem.motorista.nome = :nomeMotorista", Veiculo.class)
+                "SELECT v FROM Veiculo v JOIN fetch v.viagens viagem WHERE viagem.motorista.nome = :nomeMotorista", Veiculo.class)
                 .setParameter("nomeMotorista", nomeMotorista);
         try {
             return query.getSingleResult();

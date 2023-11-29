@@ -64,12 +64,12 @@ public class Fachada {
         }
     }
     
-    public static Viagem cadastrarViagem(String data, Veiculo veiculo, Motorista motorista, String destino, int quantidade) {
+    public static Viagem cadastrarViagem(String data, String veiculo_placa, String motorista_cnh, String destino, int quantidade) {
         try {
             DAO.begin();
 
-            veiculo = daoVeiculo.read(veiculo.getPlaca());
-            motorista = daoMotorista.read(motorista.getCnh());
+            Veiculo veiculo = daoVeiculo.read(veiculo_placa);
+            Motorista motorista = daoMotorista.read(motorista_cnh);
 
             Viagem viagem = new Viagem(data, veiculo, motorista, destino, quantidade);
 
@@ -116,22 +116,24 @@ public class Fachada {
     }
 
     public static List<Viagem> listarViagens() {
-        try {
+//        try {
             DAO.begin();
             List<Viagem> listaViagens = daoViagem.readAll();
+
             DAO.commit();
             return listaViagens;
-        } catch (Exception e) {
-            e.printStackTrace();
-            DAO.rollback();
-            return null;
-        }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            DAO.rollback();
+//            return null;
+//        }
     }
 
     public static List<Usuario> listarUsuarios() {
         try {
             DAO.begin();
             List<Usuario> resultados = daousuario.readAll();
+            
             DAO.commit();
             return resultados;
         } catch (Exception e) {

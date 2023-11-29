@@ -10,7 +10,7 @@ public class Motorista {
     private String cnh;
     private String nome;
 
-    @OneToMany(mappedBy = "motorista", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motorista", cascade={CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.LAZY)
     private List<Viagem> viagens = new ArrayList<>();
 
     public Motorista() {}

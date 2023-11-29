@@ -4,6 +4,8 @@ import model.Viagem;
 
 import java.util.List;
 
+import jakarta.persistence.TypedQuery;
+
 public class DAOViagem extends DAO<Viagem> {
 
     public Viagem read(Object chave) {
@@ -16,7 +18,13 @@ public class DAOViagem extends DAO<Viagem> {
         manager.persist(obj);
         commit();
     }
-
+    
+    @Override
+    public List<Viagem> readAll(){
+		TypedQuery<Viagem> q = manager.createQuery("select v from Viagem v LEFT JOIN FETCH v.motorista LEFT JOIN FETCH v.veiculo order by v.id", Viagem.class);
+		return  q.getResultList();
+	}
+    
     public List<Viagem> viagemMotorista(String nomeMotorista) {
         return manager.createQuery(
                 "SELECT v FROM Viagem v WHERE v.motorista.nome = :nomeMotorista", Viagem.class)

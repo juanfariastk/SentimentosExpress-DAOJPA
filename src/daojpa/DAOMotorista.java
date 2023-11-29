@@ -12,6 +12,11 @@ public class DAOMotorista extends DAO<Motorista> {
         String cnh = (String) chave;
         return manager.find(Motorista.class, cnh);
     }
+    
+    public List<Motorista> readAll(){
+		TypedQuery<Motorista> query = manager.createQuery("select m from Motorista m LEFT JOIN FETCH m.viagens order by m.cnh",Motorista.class);
+		return  query.getResultList();
+	}
 
     public List<Viagem> viagensMotorista(String nomeMotorista) {
         TypedQuery<Motorista> query = manager.createQuery(
