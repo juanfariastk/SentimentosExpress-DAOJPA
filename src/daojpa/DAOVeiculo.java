@@ -1,5 +1,6 @@
 package daojpa;
 
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import model.Veiculo;
 import model.Viagem;
@@ -43,16 +44,15 @@ public class DAOVeiculo extends DAO<Veiculo> {
     }
 
     public Veiculo veiculoPorPlaca(String placa) {
-        TypedQuery<Veiculo> query = manager.createQuery(
-                "SELECT v FROM Veiculo v WHERE v.placa = :placa", Veiculo.class)
-                .setParameter("placa", placa);
         try {
+            TypedQuery<Veiculo> query = manager.createQuery(
+                    "SELECT v FROM Veiculo v LEFT JOIN FETCH v.viagens viagem LEFT JOIN FETCH viagem.motorista WHERE v.placa = :placa", Veiculo.class)
+                    .setParameter("placa", placa);
             return query.getSingleResult();
-        } catch (Exception e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
-
 
     public void atualizarAtributosVeiculo(Veiculo veiculo) {
         try {
