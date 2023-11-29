@@ -52,10 +52,11 @@ public class DAOViagem extends DAO<Viagem> {
 
     public List<Viagem> viagensPorData(String data) {
         return manager.createQuery(
-                "SELECT v FROM Viagem v WHERE v.data = :data", Viagem.class)
+                "SELECT DISTINCT v FROM Viagem v LEFT JOIN FETCH v.motorista LEFT JOIN FETCH v.veiculo WHERE v.data = :data", Viagem.class)
                 .setParameter("data", data)
                 .getResultList();
     }
+
 
     public void atualizarAtributosViagem(Viagem viagem) {
         try {

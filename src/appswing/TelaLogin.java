@@ -85,13 +85,11 @@ public class TelaLogin {
 		frame.getContentPane().add(label_1);
 
 		textField = new JTextField();
-		textField.setText("fausto");
 		textField.setBounds(98, 31, 86, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
-		textField_1.setText("1234");
 		textField_1.setBounds(98, 61, 86, 20);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
@@ -110,7 +108,8 @@ public class TelaLogin {
 
 				if(usu!=null) {
 					Fachada.logado = usu;
-					new TelaPrincipal();
+					@SuppressWarnings("unused")
+					TelaPrincipal tela = new TelaPrincipal();
 					frame.dispose();
 				}
 				else
