@@ -4,6 +4,7 @@ import jakarta.persistence.TypedQuery;
 import model.Motorista;
 import model.Viagem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOMotorista extends DAO<Motorista> {
@@ -73,9 +74,11 @@ public class DAOMotorista extends DAO<Motorista> {
 
     public List<Motorista> motoristasComMaisDeDuasViagens() {
         TypedQuery<Motorista> query = manager.createQuery(
-                "SELECT m FROM Motorista m WHERE SIZE(m.viagens) > 2", Motorista.class);
+                "SELECT DISTINCT m FROM Motorista m LEFT JOIN FETCH m.viagens WHERE SIZE(m.viagens) > 2", Motorista.class);
         return query.getResultList();
     }
+
+
 
     public Motorista motoristaPorCNH(String cnh) {
         TypedQuery<Motorista> query = manager.createQuery(

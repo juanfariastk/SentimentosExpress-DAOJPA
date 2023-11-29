@@ -1,11 +1,8 @@
-/**********************************
- * IFPB - Curso Superior de Tec. em Sist. para Internet
- * POB - Persistencia de Objetos
- * Prof. Fausto Ayres
- *
- */
 package appconsole;
 
+import java.util.List;
+
+import model.Viagem;
 import regras_negocio.Fachada;
 
 public class Alterar {
@@ -13,12 +10,14 @@ public class Alterar {
 	public Alterar() {
 		try {
 			Fachada.inicializar();
-			Fachada.devolverCarro("AAA1000");
-			System.out.println("carro devolvido AAA1000");
-			Fachada.devolverCarro("BBB2000");
-			System.out.println("carro devolvido BBB2000");
+			// Atualizando capacidade da viagem
+            Fachada.atualizarCapacidadeDaViagemPorDestino("Recife", 6);
+            List<Viagem> viagemAtualizada = Fachada.localizarViagemPorDestino("Recife");
+            System.out.println("A viagem de ID: " + viagemAtualizada.get(0).getId() + " e Destino " + viagemAtualizada.get(0).getDestino() + " foi atualizada com sucesso!"); 
+            
+		
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println(e);
 		}
 
 		Fachada.finalizar();

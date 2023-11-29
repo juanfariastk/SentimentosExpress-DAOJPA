@@ -31,7 +31,7 @@ public class DAOVeiculo extends DAO<Veiculo> {
 
     public List<Viagem> listaViagensVeiculo(String placaVeiculo) {
         TypedQuery<Veiculo> query = manager.createQuery(
-                "SELECT v FROM Veiculo v WHERE v.placa = :placaVeiculo", Veiculo.class)
+                "SELECT v FROM Veiculo v  WHERE v.placa = :placaVeiculo", Veiculo.class)
                 .setParameter("placaVeiculo", placaVeiculo);
         Veiculo veiculo;
         try {
@@ -44,7 +44,7 @@ public class DAOVeiculo extends DAO<Veiculo> {
 
     public Veiculo veiculoPorPlaca(String placa) {
         TypedQuery<Veiculo> query = manager.createQuery(
-                "SELECT v FROM Veiculo v WHERE v.placa = :placa", Veiculo.class)
+                "SELECT v FROM Veiculo v LEFT JOIN FETCH v.viagens WHERE v.placa = :placa", Veiculo.class)
                 .setParameter("placa", placa);
         try {
             return query.getSingleResult();
@@ -52,6 +52,7 @@ public class DAOVeiculo extends DAO<Veiculo> {
             return null;
         }
     }
+
 
     public void atualizarAtributosVeiculo(Veiculo veiculo) {
         try {

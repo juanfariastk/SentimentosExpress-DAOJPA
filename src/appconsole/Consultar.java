@@ -12,6 +12,13 @@ public class Consultar {
             Fachada.inicializar();
 
             System.out.println("Consultas...\n");
+            
+            //Consultar viagem para Recife
+            System.out.println("Viagens para Bariloche:");
+            for (Viagem viagem : Fachada.localizarViagemPorDestino("Bariloche")) {
+                System.out.println(viagem);
+            }
+            System.out.println();
 
             // Consultar viagens da data de 18/01/2023
             System.out.println("Viagens da data de 18/01/2023:");
